@@ -1,0 +1,24 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.main-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: rgb(255, 184, 91);
+}
+
+.card {
+    width: 50%;
+    background-color: #d8a055;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.th {
+    padding-right: 200px;
+}
