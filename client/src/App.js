@@ -1,12 +1,12 @@
-import './student.css'
-import Student from './Student';
+import "./student.css";
+import Student from "./Student";
 
-function App() {
+const App = () => {
   return (
     <div className="App">
       <Student />
     </div>
   );
-}
+};
 
 export default App;
