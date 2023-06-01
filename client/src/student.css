@@ -1,9 +1,3 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 .main-div {
     display: flex;
     justify-content: center;
@@ -13,12 +7,68 @@
 }
 
 .card {
-    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-wrap: wrap;
+    max-width: 1000px;
     background-color: #d8a055;
     border-radius: 10px;
     padding: 20px;
 }
 
+.th, td {
+    padding: 7px;
+}
+
 .th {
     padding-right: 200px;
+    margin-bottom: 20px;
+}
+
+/* BUTTONS */
+.button-data-table {
+    display: flex;
+    gap: 10px;
+    margin-left: 20px;
+}
+
+.btn {
+    width: 100px;
+    background-color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.add-btn {
+    background-color: rgb(136, 68, 136);
+    color: white;
+    margin-bottom: 20px;
+}
+
+.add-btn:hover {
+    background-color: rgb(123, 50, 123);
+}
+
+.delete-btn {
+    background-color: rgb(233, 91, 91);
+    color: white;
+}
+
+.delete-btn:hover {
+    background-color: rgb(220, 70, 70);
+}
+
+.update-btn {
+    background-color: rgb(92, 157, 92);
+    color: white;
+}
+
+.update-btn:hover {
+    background-color: rgb(76, 145, 76);
 }
