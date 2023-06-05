@@ -1,42 +1,71 @@
-import React, { useState } from 'react';
-// import { Navigate, useNavigate } from 'react-router-dom';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function CreateStudent() {
-  const [name, setName] = useState("")
-  const [email, setEmail] = useState("")
-  // const navigate = useNavigate();
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const navigate = useNavigate();
 
-  function handleSubmit(e) {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    // // axios.post("", {name,email})
-    // .then(res => {
-    //   console.log(res)
-    //   navigate("/")
-    // }).catch(err => console.log(err));
-  }
+    const newStudentData = { name, email };
+
+    fetch("http://localhost:5000/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newStudentData),
+    })
+      .then((response) => {
+        if (response.ok) {
+          // Assuming successful creation, you can perform any necessary actions here
+          console.log("Student created successfully");
+          navigate("/"); // Redirect to home page or desired route
+        } else {
+          throw new Error("Failed to create student");
+        }
+      })
+      .catch((error) => {
+        // Handle any errors that occur during the fetch request
+        console.log("Error creating student:", error);
+      });
+  };
 
   return (
-    <div className='main-div'>
-      <div className='card' >
+    <div className="main-div">
+      <div className="card">
         <form onSubmit={handleSubmit}>
-          <h2>
-            Add Student
-          </h2>
+          <h2>Add Student</h2>
           <div>
-            <label htmlFor="">Name</label>
-            <input type="text" placeholder='Enter Name' className='form-control' 
-            onChange={e => setName(e.target.value)}/>
+            <label htmlFor="name">Name</label>
+            <input
+              type="text"
+              id="name"
+              placeholder="Enter Name"
+              className="form-control"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
           </div>
           <div>
-            <label htmlFor="">Email</label>
-            <input type="text" placeholder='Enter Email' className='form-control'
-            onChange={e => setEmail(e.target.value)} />
+            <label htmlFor="email">Email</label>
+            <input
+              type="text"
+              id="email"
+              placeholder="Enter Email"
+              className="form-control"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
           </div>
-          <button className='btn'>Submit</button>
+          <button className="btn" type="submit">
+            Submit
+          </button>
         </form>
       </div>
     </div>
-  )
+  );
 }
 
 export default CreateStudent;
