@@ -1,5 +1,8 @@
+
 import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import './CreateStudent.css';
+
 
 function UpdateStudent() {
   const [name, setName] = useState("");
@@ -33,11 +36,12 @@ function UpdateStudent() {
   }
 
   return (
+
     <div className="main-div">
-      <div className="card">
+      <div className="form-card">
         <form onSubmit={handleSubmit}>
           <h2>Update Student</h2>
-          <div>
+          <div className='form-group'>
             <label htmlFor="name">Name</label>
             <input
               type="text"
@@ -48,7 +52,7 @@ function UpdateStudent() {
               onChange={(e) => setName(e.target.value)}
             />
           </div>
-          <div>
+          <div className='form-group'>
             <label htmlFor="email">Email</label>
             <input
               type="text"
@@ -58,6 +62,7 @@ function UpdateStudent() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
+
           </div>
           <button className="btn" type="submit">
             Update

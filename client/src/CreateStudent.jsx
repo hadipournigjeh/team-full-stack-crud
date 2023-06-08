@@ -1,5 +1,8 @@
+
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import './CreateStudent.css';
+
 
 function CreateStudent() {
   const [name, setName] = useState("");
@@ -33,28 +36,32 @@ function CreateStudent() {
   };
 
   return (
-    <div className="main-div">
-      <div className="card">
+
+    <div className='main-div'>
+      <div className='form-card'>
         <form onSubmit={handleSubmit}>
           <h2>Add Student</h2>
-          <div>
-            <label htmlFor="name">Name</label>
+          <div className='form-group'>
+            <label htmlFor='name'>Name</label>
             <input
-              type="text"
-              id="name"
-              placeholder="Enter Name"
-              className="form-control"
+              type='text'
+              id='name'
+              placeholder='Enter Name'
+              className='form-control'
+
               value={name}
               onChange={(e) => setName(e.target.value)}
             />
           </div>
-          <div>
-            <label htmlFor="email">Email</label>
+
+          <div className='form-group'>
+            <label htmlFor='email'>Email</label>
             <input
-              type="text"
-              id="email"
-              placeholder="Enter Email"
-              className="form-control"
+              type='text'
+              id='email'
+              placeholder='Enter Email'
+              className='form-control'
+
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
@@ -68,4 +75,7 @@ function CreateStudent() {
   );
 }
 
+
+
 export default CreateStudent;
+
