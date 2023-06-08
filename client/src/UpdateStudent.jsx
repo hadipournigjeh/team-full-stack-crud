@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './CreateStudent.css';
 //import { useNavigate, useParams } from 'react-router-dom';
 
 function UpdateStudent() {
@@ -18,17 +19,17 @@ function UpdateStudent() {
 
   return (
     <div className='main-div'>
-      <div className='card' >
+      <div className='form-card' >
         <form onSubmit={handleSubmit}>
           <h2>
             Update Student
           </h2>
-          <div>
+          <div className='form-group'>
             <label htmlFor="">Name</label>
             <input type="text" placeholder='Enter Name' className='form-control' 
             onChange={e => setName(e.target.value)}/>
           </div>
-          <div>
+          <div className='form-group'>
             <label htmlFor="">Email</label>
             <input type="text" placeholder='Enter Email' className='form-control'
             onChange={e => setEmail(e.target.value)} />
