@@ -1,7 +1,17 @@
 const express = require("express");
 const cors = require("cors");
 const app = express();
-const allStudents = require("./exampleresponse.json");
+//const allStudents = require("./exampleresponse.json");
+const { Pool } = require("pg");
+const dotenv = require("dotenv"); // Module for loading environment variables from a .env file
+dotenv.config();
+
+const pool = new Pool({
+  connectionString: process.env.DB_URL,
+  ssl: {
+    rejectUnauthorized: false,
+  },
+});
 
 app.use(express.json());
 app.use(cors()); // Enable CORS for all routes
