@@ -61,7 +61,16 @@ app.delete("/:id", (req, res) => {
     } else if (result.rowCount === 0) {
       res.status(404).json({ message: "Student not found" });
     } else {
-      res.json({ message: "Student deleted successfully" });
+      // Fetch the updated list of students after deletion
+      const selectQuery = "SELECT * FROM students";
+
+      pool.query(selectQuery, (error, result) => {
+        if (error) {
+          res.status(500).json({ error: "Internal server error" });
+        } else {
+          res.json(result.rows);
+        }
+      });
     }
   });
 });
