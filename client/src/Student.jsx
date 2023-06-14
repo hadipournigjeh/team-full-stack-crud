@@ -11,7 +11,7 @@ function Student() {
   useEffect(() => {
     fetch("http://localhost:5000/")
       .then((res) => res.json())
-      .then((data) => setStudent(data))
+      .then((data) => console.log(data))
       .catch((error) => console.log(error));
   }, []);
 
