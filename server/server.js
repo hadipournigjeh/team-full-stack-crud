@@ -21,7 +21,8 @@ app.get("/", (req, res) => {
 
   pool.query(selectQuery, (error, result) => {
     if (error) {
-      res.status(500).json({ error: "Internal server error" });
+      console.error("Error executing SELECT query:", error);
+      res.status(500).json({ error: "Error retrieving student data" });
     } else {
       res.json(result.rows);
     }
@@ -30,14 +31,17 @@ app.get("/", (req, res) => {
 
 // add new student
 app.post("/", (req, res) => {
-  if (req.body.name.trim() === "" || req.body.email.trim() === "") {
+  const name = req.body.name;
+  const email = req.body.email;
+
+  if (!name || !email || name.trim() === "" || email.trim() === "") {
     res.status(400).json({ message: "Please fill all the fields" });
     return;
   }
 
   const insertQuery =
     "INSERT INTO students (name, email) VALUES ($1, $2) RETURNING *";
-  const values = [req.body.name, req.body.email];
+  const values = [name, email];
 
   pool.query(insertQuery, values, (error, result) => {
     if (error) {
@@ -51,6 +55,11 @@ app.post("/", (req, res) => {
 // delete student by ID
 app.delete("/:id", (req, res) => {
   const studentId = Number(req.params.id);
+
+  if (isNaN(studentId)) {
+    res.status(400).json({ message: "Invalid student ID" });
+    return;
+  }
 
   const deleteQuery = "DELETE FROM students WHERE id = $1";
   const values = [studentId];
@@ -80,6 +89,19 @@ app.put("/:id", (req, res) => {
   const studentId = Number(req.params.id);
   const newEmail = req.body.email;
   const newName = req.body.name;
+
+  if(isNaN(studentId)) {
+    res.status(400).json({ message: "Invalid student ID" });
+    return;
+  }
+
+  if (
+    (!newName || newName.trim() === "") &&
+    (!newEmail || newEmail.trim() === "")
+  ) {
+    res.status(400).json({ message: "Please provide a new name or email" });
+    return;
+  }
 
   const updateQuery =
     "UPDATE students SET name = $1, email = $2 WHERE id = $3 RETURNING *";
